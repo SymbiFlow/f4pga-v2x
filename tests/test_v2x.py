@@ -28,7 +28,7 @@ from v2x.mux_gen import mux_gen
 
 from vtr_xml_utils import convert
 
-from distutils.dir_util import copy_tree
+from shutil import copytree
 
 TEST_TMP_SUFFIX = 'build/'
 
@@ -49,7 +49,7 @@ def prepare_files():
         s = os.path.join(scriptdir, tdir)
         d = os.path.join(testdir, tdir)
         if os.path.isdir(s):
-            copy_tree(s, d, update=1)
+            copytree(s, d, dirs_exist_ok=True)
 
     # Generate muxes/routing for tests/muxes model
     mux_gen(outdir=os.path.join(testdir, 'muxes/routing'),
